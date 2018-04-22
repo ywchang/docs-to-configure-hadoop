@@ -1,4 +1,6 @@
-## Set the JAVA_HOME environment variable for Hadoop
+## Configuration Part
+
+### Set the JAVA_HOME environment variable for Hadoop
 
 Open the `hadoop-env.sh` file under `etc/hadoop` folder. At the bottom of the file, expose the JAVA_HOME to point at the installation path of Java.
 
@@ -10,13 +12,13 @@ export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-10.0.1.jdk/Contents/Home
 
 Please note that if you in Mac, can run `/usr/libexec/java_home` to get the Java installation path.
 
-## Set up the HADOOP_PREFIX environment variable to point to your hadoop distribution
+### Set up the HADOOP_PREFIX environment variable to point to your hadoop distribution
 
 ```
 export HADOOP_PREFIX=/Users/ant/hadoop-3.1.0
 ```
 
-## Configure the `core-site.xml` setting
+### Configure the `core-site.xml` setting
 
 This `core-site.xml` file, is used to configure the overall hadoop, not component specific. 
 
@@ -33,7 +35,7 @@ The below config is to make hadoop use HDFS as the storage.
 </configuration>
 ``` 
 
-## Configure `hdfs-site.xml` to customize HDFS
+### Configure `hdfs-site.xml` to customize HDFS
 
 #### Set the replication factor to be 1
 
@@ -48,7 +50,7 @@ Replication is a way by which fault tolerance and recovery is built in hadoop. A
 </configuration>
 ```
 
-## Configure `mapred-site.xml` to customize MapReduce
+### Configure `mapred-site.xml` to customize MapReduce
 
 This file can be not existed by default. Create this file manually if the file does not exist.
 
@@ -65,7 +67,7 @@ Here We choose to use `yarn` but other available options are `local` and `classi
 </configuration>
 ```
 
-## Configure `yarn-site.xml` to customize Yarn
+### Configure `yarn-site.xml` to customize Yarn
 
 #### Allow shuffle and sort capabilities for the MapReduce
 
