@@ -80,3 +80,78 @@ Here We choose to use `yarn` but other available options are `local` and `classi
 </configuration>
 ```
 
+## Start Hadoop
+
+### Start the HDFS
+
+##### Format the NameNode
+
+The NameNode is the master node in your cluster, it keeps track of all the other nodes on which processes run. Format this so that we can have a fresh start.
+
+```
+> bin/hdfs namenode -format
+```
+
+##### Start the master and slave nodes of the distributed file system
+
+After this successful execution of this command, name node and data nodes have been started. 
+
+```
+> sbin/start-dfs.sh
+```
+
+##### Open the web interface in browser to verify name node
+
+Hadoop provides a special web interface at the port number 50070, especially for the name node.
+
+```
+http://localhost:50070/
+```
+
+##### Create home directory on HDFS
+
+```
+> bin/hdfs dfs -mkdir /users
+> bin/hdfs dfs -mkdir /users/ant
+```
+
+##### Confirm the HDFS is up and running
+
+Run the `jps` command, which is a standard command line utility that comes along with the Java JDK, and it shows the list of java processes that are running on your system. Here we should see `NameNode`, `DataNode`, `SecondaryNameNode`. These three process being up indicate that HDFS is up and running.
+
+### Start Yarn
+
+```
+> sbin/start-yarn.sh 
+```
+
+Running the jps again, and should be able see two additional processes, `NodeManager` and `ResourceManager`. 
+
+## Monitor the cluster
+
+### Cluster view using resource manager in Yarn
+
+Open `http://localhost:8088` in the browser to see the entire cluster view.
+
+### Run the example MapReduce 
+
+##### Create the input directory in HDFS
+
+```
+> bin/hdfs dfs -mkdir input
+```
+
+##### Copy over the `etc/hadoop` folder to input folder
+
+```
+> bin/hdfs dfs -put etc/hadoop/* input/
+> bin/hdfs dfs -ls input
+```
+
+##### Run the MapReduce job
+
+```
+> bin/hadoop jar share/hadoop/mapreudce/hadoop-mapreduce-examples-3.1.0.jar grep input output 'dfs[a-z.]+'
+> bin/hdfs dfs -cat output/*
+```
+
