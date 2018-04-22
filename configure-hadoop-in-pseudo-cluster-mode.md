@@ -22,7 +22,7 @@ export HADOOP_PREFIX=/Users/ant/hadoop-3.1.0
 
 This `core-site.xml` file, is used to configure the overall hadoop, not component specific. 
 
-#### Make hadoop to use HDFS
+##### Make hadoop to use HDFS
 
 The below config is to make hadoop use HDFS as the storage. 
 
@@ -37,7 +37,7 @@ The below config is to make hadoop use HDFS as the storage.
 
 ### Configure `hdfs-site.xml` to customize HDFS
 
-#### Set the replication factor to be 1
+##### Set the replication factor to be 1
 
 Replication is a way by which fault tolerance and recovery is built in hadoop. A psedo-distributed set up has only a single node so the replication factor has to be 1 
 
@@ -54,7 +54,7 @@ Replication is a way by which fault tolerance and recovery is built in hadoop. A
 
 This file can be not existed by default. Create this file manually if the file does not exist.
 
-#### Set `Yarn` as the runtime framework to execute MapReduce jobs
+##### Set `Yarn` as the runtime framework to execute MapReduce jobs
 
 Here We choose to use `yarn` but other available options are `local` and `classic`. Specifically, `classic` is only used for the first version of MapReduce, and `local` is used for running MapReduce locally. 
 
@@ -69,7 +69,7 @@ Here We choose to use `yarn` but other available options are `local` and `classi
 
 ### Configure `yarn-site.xml` to customize Yarn
 
-#### Allow shuffle and sort capabilities for the MapReduce
+##### Allow shuffle and sort capabilities for the MapReduce
 
 ```
 <configuration>
